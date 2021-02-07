@@ -9,23 +9,84 @@ import MenuIcon from '@material-ui/icons/Menu';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const useStyles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    cntr: {
+        display:"table",
+        height:"100%",
+    },
+    cntrInnr : {
+        display: "table-cell",
+        textAlign: "center",
+        verticalAlign: "middle",
+        transform: `scale(${0.8})`,
+    },
+    search : {
+        '&::after':{
+            content: '""',
+            position: 'absolute',
+            width: '3px',
+            height: '20px',
+            right: '-5px',
+            top: '21px',
+            background: '#d8e0e8',
+            borderRadius: '3px',
+            transform: `rotate(-45deg)`,
+            transition: 'all 200ms ease',
+        },
+        '& .active':{
+            '&::after':{
+                height: "0px",
+            },
+            width: '200px',
+            marginRight: '0px',
+            borderColor: '#fff',
+        },
+        '&:hover':{
+            width: '200px',
+            marginRight: '0px',
+            borderColor: '#fff',
+        },
+        display: "inline-block",
+        position: "relative",
+        height: "35px",
+        width: "35px",
+        boxSizing: "border-box",
+        margin: "0px 8px 7px 0px",
+        padding: "7px 9px 0px 9px",
+        border: "3px solid #d8e0e8",
+        borderRadius: "25px",
+        transition: "all 200ms ease",
+        cursor: "text",
+    },
+    inptSearch : {
+        width: "100%",
+        border: "none",
+        boxSizing: "border-box",
+        fontSize: "16px",
+        marginBottom: "5px",
+        color: '#D8E0E8',
+        background: 'transparent',
+        outlineWidth: '0px',
+    }
 });
 
 class NavigationBar extends Component {
     render(){
         const {classes} = this.props;
+        document.getElementById('inpt_search').addEventListener('focus', function (){
+            this.parentElement.classList.toggle('active');
+        });
         return(
         <div className={classes.root}>
-            <AppBar position="static" style={{backgroundColor: 'transparent'}}>
+            <AppBar position="static">
                 <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <MenuIcon />
@@ -33,7 +94,17 @@ class NavigationBar extends Component {
                 <Typography variant="h6" className={classes.title}>
                     News
                 </Typography>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit">Home</Button>
+                <Button color="inherit">Films</Button>
+                <Button color="inherit">My List</Button>
+                <Button color="inherit">People</Button>
+                <div className={classes.cntr}>
+                    <div className={classes.cntrInnr}>
+                        <label className={classes.search} for="inpt_search">
+                            <input className={classes.inptSearch} id="inpt_search" type="text" />
+                        </label>
+                    </div>
+                </div>
                 </Toolbar>
             </AppBar>
         </div>
