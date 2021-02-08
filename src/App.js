@@ -1,7 +1,8 @@
-import ButtonAppBar from "./components/navigationBar"
+import Homepage from "./pages/homepage";
 function App() {
   return (<div>
-    <ButtonAppBar/>
+    <Homepage>
+    </Homepage>
   </div>
   );
 }
