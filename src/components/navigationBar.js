@@ -41,19 +41,6 @@ const useStyles = (theme) => ({
             transform: `rotate(-45deg)`,
             transition: 'all 200ms ease',
         },
-        '& .active':{
-            '&::after':{
-                height: "0px",
-            },
-            width: '200px',
-            marginRight: '0px',
-            borderColor: '#fff',
-        },
-        '&:hover':{
-            width: '200px',
-            marginRight: '0px',
-            borderColor: '#fff',
-        },
         display: "inline-block",
         position: "relative",
         height: "35px",
@@ -65,34 +52,60 @@ const useStyles = (theme) => ({
         borderRadius: "25px",
         transition: "all 200ms ease",
         cursor: "text",
+        "&.active":{
+            '&::after':{
+                height: "0px",
+            },
+            width: '300px',
+            height: '100%',
+            marginBottom: "0px",
+            marginRight: '0px',
+            borderColor: '#ffffff',
+        },
     },
     inptSearch : {
         width: "100%",
+        height: "100%",
         border: "none",
         boxSizing: "border-box",
-        fontSize: "16px",
+        fontSize: "22px",
         marginBottom: "5px",
+        marginRight: "0px",
         color: '#D8E0E8',
         background: 'transparent',
         outlineWidth: '0px',
+    },
+    logoContainer :{
+        display: 'flex',
+        color: '#999',
+        fontSize: '36px',
+        letterSpacing: '12px',
+        fontWeight: '800',
+        fontFamily: 'monospace',
     }
 });
 
 class NavigationBar extends Component {
+    //function to toggle active class on focus
+    onFocus() {
+        this.myInput.parentElement.classList.toggle("active");
+    }
+    //function to toggle active class on blur        
+    onBlur() {
+        this.myInput.parentElement.classList.toggle("active");
+        this.myInput.value = "";    //clear everything in input tag when blurred
+    }
     render(){
         const {classes} = this.props;
-        document.getElementById('inpt_search').addEventListener('focus', function (){
-            this.parentElement.classList.toggle('active');
-        });
         return(
         <div className={classes.root}>
-            <AppBar position="static">
+            <AppBar position="static" style={{background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.05))', opacity: '0.7'}}>
                 <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    News
+                    <div className={classes.logoContainer}>LO<span>G</span>O</div>
                 </Typography>
                 <Button color="inherit">Home</Button>
                 <Button color="inherit">Films</Button>
@@ -100,8 +113,8 @@ class NavigationBar extends Component {
                 <Button color="inherit">People</Button>
                 <div className={classes.cntr}>
                     <div className={classes.cntrInnr}>
-                        <label className={classes.search} for="inpt_search">
-                            <input className={classes.inptSearch} id="inpt_search" type="text" />
+                        <label className={classes.search} htmlFor="inpt_search">
+                            <input className={classes.inptSearch} ref={input => {this.myInput = input;}} onFocus={this.onFocus.bind(this)} onBlur={this.onBlur.bind(this)} id="inpt_search" type="text" maxLength="25"/>
                         </label>
                     </div>
                 </div>
