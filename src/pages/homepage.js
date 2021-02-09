@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import NavigationBar from "../components/navigationBar";
-import backgroundImg from "./background.jpg"
+import backgroundImg from "./background.jpg";
+import Button from "@material-ui/core/Button";
+
+//Material ui Icons
+import AppleIcon from '@material-ui/icons/Apple';
+import AndroidIcon from '@material-ui/icons/Android';
 
 const styles = (theme) => ({
     backgroundBackdrop : {
@@ -60,28 +64,50 @@ const styles = (theme) => ({
             textTransform: 'uppercase',
             fontFamily: 'sans-serif',
         }
+    },
+    tagLine : {
+        width: '100%',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,1),rgba(20,24,28,1))',
+        height: '15vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        '& h2' : {
+            fontSize: '18px',
+            letterSpacing: '2px',
+            fontWeight: '300',
+            color: '#9ab',
+            fontFamily: 'sans-serif',
+        }
     }
 });
 
-export class homepage extends Component {
+class homepage extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <div className={classes.backgroundBackdrop}>
-                <div className={classes.backDropContainer}>
-                    <NavigationBar/>
-                    <div className={classes.backDropShadow}>
-                        <div className={classes.backDropContents}>
-                            <div>
-                                <h3>Track Movie's, Films, T.V.Series, Web-Series, etc that you've watched.</h3><h3>All at one Place.</h3>
-                            </div>
-                            <div className={classes.getStartedButton}>
-                                <a href="#">Get Started</a>
+            <Fragment>
+                <div className={classes.backgroundBackdrop}>
+                    <div className={classes.backDropContainer}>
+                        <div className={classes.backDropShadow}>
+                            <div className={classes.backDropContents}>
+                                <div>
+                                    <h3>Track Movie's, Films, T.V.Series, Web-Series, etc that you've watched.</h3><h3>All at one Place.</h3>
+                                </div>
+                                <Button className={classes.getStartedButton}>
+                                    <a href="#">Get Started</a>
+                                </Button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div className={classes.tagLine}>
+                    <h2> A Social Network to connect with Movie lovers. Also Available on <AppleIcon style={{color :"#9ab"}}/> <AndroidIcon style={{color :"#9ab"}}/> </h2>
+                </div>
+            </Fragment>
         )
     }
 }
