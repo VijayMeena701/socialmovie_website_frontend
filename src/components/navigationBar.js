@@ -99,7 +99,7 @@ class NavigationBar extends Component {
         const {classes} = this.props;
         return(
         <div className={classes.root}>
-            <AppBar position="sticky" style={{background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.05))', opacity: '0.7'}}>
+            <AppBar position="absolute" style={{background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.05))', opacity: '0.7'}}>
                 <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <MenuIcon />

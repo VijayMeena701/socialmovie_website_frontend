@@ -14,7 +14,7 @@ const theme = createMuiTheme({
       useNextVariants: true,
     }
   }
-})
+});
 
 class App extends Component {
   render() {

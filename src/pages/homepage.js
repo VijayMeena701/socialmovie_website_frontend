@@ -4,10 +4,14 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import backgroundImg from "./background.jpg";
 import Button from "@material-ui/core/Button";
+import MovieCard from '../components/MovieCard';
+import { connect } from "react-redux";
 
 //Material ui Icons
 import AppleIcon from '@material-ui/icons/Apple';
 import AndroidIcon from '@material-ui/icons/Android';
+
+import CircularProgess from "@material-ui/core/CircularProgress";
 
 const styles = (theme) => ({
     backgroundBackdrop : {
@@ -82,12 +86,27 @@ const styles = (theme) => ({
             color: '#9ab',
             fontFamily: 'sans-serif',
         }
+    },
+    movieGrid : {
+        display: 'grid',
+        width: '1200px',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        margin: '0 auto',
+        background: '#1b1b1b',
     }
 });
 
-class homepage extends Component {
+class Homepage extends Component {
     render() {
         const {classes} = this.props;
+        const { loading, movies } = this.props.data;
+        let recentMoviesMarkUp = !loading ? (
+            movies.map((movie) => <MovieCard key={movie.movieId} MovieData={movie}/>)
+            ): (
+                <div className={classes.circularProgess}>
+                    <CircularProgess size={200} thickness={2}/>
+                </div>
+            )
         return (
             <Fragment>
                 <div className={classes.backgroundBackdrop}>
@@ -107,12 +126,23 @@ class homepage extends Component {
                 <div className={classes.tagLine}>
                     <h2> A Social Network to connect with Movie lovers. Also Available on <AppleIcon style={{color :"#9ab"}}/> <AndroidIcon style={{color :"#9ab"}}/> </h2>
                 </div>
+                <div className={classes.movieGrid}>
+                    {recentMoviesMarkUp}
+                </div>
             </Fragment>
         )
     }
 }
-homepage.propTypes = {
+Homepage.propTypes = {
     classes: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(homepage);
+const mapStateToProps = (state) => ({
+    data: state.data,
+});
+
+const mapActionToProps = {
+
+};
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(Homepage));
