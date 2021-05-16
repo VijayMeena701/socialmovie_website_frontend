@@ -14,9 +14,9 @@ import AndroidIcon from '@material-ui/icons/Android';
 import CircularProgess from "@material-ui/core/CircularProgress";
 
 const styles = (theme) => ({
-    backgroundBackdrop : {
+    backgroundBackdrop: {
         position: 'relative',
-        display : 'block',
+        display: 'block',
         top: '0',
         left: '0',
         width: '100%',
@@ -26,12 +26,12 @@ const styles = (theme) => ({
         backgroundPosition: 'center',
         backgroundSize: 'cover',
     },
-    backDropContainer : {
-        height:'100%',
+    backDropContainer: {
+        height: '100%',
         width: '100%',
         background: 'radial-gradient( rgba(0,0,0,0.005), rgba(0,0,0,0.05), rgba(0,0,0,0.5) , rgba(0,0,0,0.9), rgba(0,0,0,1))',
     },
-    backDropShadow : {
+    backDropShadow: {
         position: 'absolute',
         bottom: '0px',
         left: '0',
@@ -39,28 +39,28 @@ const styles = (theme) => ({
         width: '100%',
         background: 'linear-gradient(to top, rgba(0,0,0,0.95),rgba(0,0,0,0.7),rgba(0,0,0,0.4),rgba(0,0,0,0.1),rgba(0,0,0,0) 400px)',
     },
-    backDropContents : {
+    backDropContents: {
         position: 'relative',
         width: '92%',
         margin: '0 auto',
         top: '60%',
         textAlign: 'center',
         zIndex: '0',
-        '& h3' : {
+        '& h3': {
             color: '#fff',
-            margin:'0px',
+            margin: '0px',
             fontSize: '36px',
             lineHeight: '1.2em',
         },
     },
-    getStartedButton : {
+    getStartedButton: {
         width: '250px',
         margin: 'auto',
         marginTop: '40px',
         borderRadius: '5px',
         padding: '5px 10px',
         background: '#1a6900',
-        '& a' : {
+        '& a': {
             textAlign: 'center',
             textDecoration: 'none',
             color: '#d8e0e8',
@@ -69,7 +69,7 @@ const styles = (theme) => ({
             fontFamily: 'sans-serif',
         }
     },
-    tagLine : {
+    tagLine: {
         width: '100%',
         background: 'linear-gradient(to bottom, rgba(0,0,0,1),rgba(20,24,28,1))',
         height: '15vh',
@@ -77,9 +77,7 @@ const styles = (theme) => ({
         alignItems: 'center',
         alignContent: 'center',
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        '& h2' : {
+        '& h2': {
             fontSize: '18px',
             letterSpacing: '2px',
             fontWeight: '300',
@@ -87,7 +85,7 @@ const styles = (theme) => ({
             fontFamily: 'sans-serif',
         }
     },
-    movieGrid : {
+    movieGrid: {
         display: 'grid',
         width: '1200px',
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -98,15 +96,15 @@ const styles = (theme) => ({
 
 class Homepage extends Component {
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
         const { loading, movies } = this.props.data;
         let recentMoviesMarkUp = !loading ? (
-            movies.map((movie) => <MovieCard key={movie.movieId} MovieData={movie}/>)
-            ): (
-                <div className={classes.circularProgess}>
-                    <CircularProgess size={200} thickness={2}/>
-                </div>
-            )
+            movies.map((movie) => <MovieCard key={movie.movieId} MovieData={movie} />)
+        ) : (
+            <div className={classes.circularProgess}>
+                <CircularProgess size={200} thickness={2} />
+            </div>
+        )
         return (
             <Fragment>
                 <div className={classes.backgroundBackdrop}>
@@ -124,7 +122,7 @@ class Homepage extends Component {
                     </div>
                 </div>
                 <div className={classes.tagLine}>
-                    <h2> A Social Network to connect with Movie lovers. Also Available on <AppleIcon style={{color :"#9ab"}}/> <AndroidIcon style={{color :"#9ab"}}/> </h2>
+                    <h2> A Social Network to connect with Movie lovers. Also Available on <AppleIcon style={{ color: "#9ab" }} /> <AndroidIcon style={{ color: "#9ab" }} /> </h2>
                 </div>
                 <div className={classes.movieGrid}>
                     {recentMoviesMarkUp}
